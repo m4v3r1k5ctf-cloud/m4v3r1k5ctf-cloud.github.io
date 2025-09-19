@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Cybersecurity/Hacker Design System */
+@layer base {
+  :root {
+    /* Core Cyber Theme */
+    --background: 220 27% 4%;
+    --foreground: 180 100% 85%;
+    
+    /* Cards & Surfaces */
+    --card: 220 25% 6%;
+    --card-foreground: 180 100% 90%;
+    
+    --popover: 220 25% 8%;
+    --popover-foreground: 180 100% 90%;
+    
+    /* Primary Cyber Colors - Red/Crimson Theme */
+    --primary: 348 83% 47%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 348 100% 60%;
+    
+    /* Secondary & Accents - Golden Theme */
+    --secondary: 51 100% 50%;
+    --secondary-foreground: 220 27% 4%;
+    --secondary-glow: 51 100% 65%;
+    
+    --accent: 45 100% 55%;
+    --accent-foreground: 220 27% 4%;
+    --accent-glow: 45 100% 70%;
+    
+    /* Muted Elements */
+    --muted: 220 20% 12%;
+    --muted-foreground: 180 50% 65%;
+    
+    /* Terminal Gold */
+    --terminal: 51 100% 50%;
+    --terminal-foreground: 220 27% 4%;
+    --terminal-glow: 51 100% 65%;
+    
+    /* Status Colors */
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --warning: 45 100% 50%;
+    --success: 120 100% 40%;
+    
+    /* Borders & Inputs */
+    --border: 180 50% 20%;
+    --input: 220 25% 10%;
+    --ring: 180 100% 50%;
+    
+    --radius: 0.75rem;
+    
+    /* Gradients */
+    --gradient-cyber: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+    --gradient-terminal: linear-gradient(135deg, hsl(var(--terminal)), hsl(var(--primary)));
+    --gradient-glow: linear-gradient(135deg, hsl(var(--primary-glow)), hsl(var(--accent-glow)));
+    
+    /* Shadows & Glows */
+    --shadow-cyber: 0 0 20px hsl(var(--primary) / 0.3);
+    --shadow-terminal: 0 0 20px hsl(var(--terminal) / 0.3);
+    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.4);
+    
+    /* Animations */
+    --transition-cyber: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-glow: all 0.5s ease-out;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-mono overflow-x-hidden;
+    background: 
+      radial-gradient(circle at 25% 25%, hsl(var(--primary) / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, hsl(var(--secondary) / 0.1) 0%, transparent 50%),
+      hsl(var(--background));
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .text-cyber {
+    @apply text-primary;
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+  }
+  
+  .text-terminal {
+    color: hsl(var(--terminal));
+    text-shadow: 0 0 10px hsl(var(--terminal) / 0.5);
+  }
+  
+  .glow-cyber {
+    box-shadow: var(--shadow-cyber);
+    transition: var(--transition-glow);
+  }
+  
+  .glow-terminal {
+    box-shadow: var(--shadow-terminal);
+    transition: var(--transition-glow);
+  }
+  
+  .gradient-cyber {
+    background: var(--gradient-cyber);
+  }
+  
+  .gradient-terminal {
+    background: var(--gradient-terminal);
+  }
+  
+  .border-cyber {
+    border: 1px solid hsl(var(--primary) / 0.3);
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.1);
+  }
+  
+  .border-terminal {
+    border: 1px solid hsl(var(--terminal) / 0.3);
+    box-shadow: 0 0 20px hsl(var(--terminal) / 0.1);
+  }
+}
+
+@layer utilities {
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-flicker {
+    animation: flicker 0.1s ease-in-out infinite alternate;
+  }
+  
+  .animate-typing {
+    overflow: hidden;
+    border-right: 2px solid hsl(var(--primary));
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+
+  /* Roadmap timeline helpers */
+  .timeline-item { 
+    opacity: 0; 
+    transform: translateY(12px); 
+    transition: opacity 1s ease, transform 1s ease; 
+  }
+  .timeline-item.visible { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+/* Floating animation for particles */
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+    opacity: 0.3;
+  }
+  33% { 
+    transform: translateY(-10px) rotate(120deg); 
+    opacity: 0.7;
+  }
+  66% { 
+    transform: translateY(10px) rotate(240deg); 
+    opacity: 0.5;
+  }
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 20px hsl(var(--primary) / 0.2); }
+  to { box-shadow: 0 0 30px hsl(var(--primary) / 0.4); }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: hsl(var(--primary)); }
+}
