@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowDown, Code, Shield, Terminal } from "lucide-react";
+import logoWithText from "@/assets/mavericks-logo-with-text.png";
 
 const typewriterTexts = [
   "Elite CTF Warriors",
@@ -62,7 +63,7 @@ export const HeroSection = () => {
         <div className="mb-8 flex justify-center">
           <div className="relative">
             <img 
-              src="/src/assets/mavericks-logo-with-text.png" 
+              src={logoWithText}
               alt="M@v3r!ks Logo" 
               className="h-32 w-auto animate-glow"
             />

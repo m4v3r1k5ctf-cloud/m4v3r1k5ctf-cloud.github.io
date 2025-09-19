@@ -1,10 +1,10 @@
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import logoUrl from "./assets/mavericks-logo.png";
 
-// Dynamically set favicon from bundled asset
+// Dynamically set favicon from public asset for reliability on GitHub Pages
 const ensureFavicon = () => {
+  const iconUrl = "/mavericks-favicon.png";
   const setIcon = (rel: string) => {
     let link = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement | null;
     if (!link) {
@@ -12,7 +12,7 @@ const ensureFavicon = () => {
       link.rel = rel;
       document.head.appendChild(link);
     }
-    link.href = logoUrl;
+    link.href = iconUrl;
   };
 
   setIcon("icon");
